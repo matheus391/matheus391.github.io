@@ -22,22 +22,18 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         const href = (anchor as HTMLElement).getAttribute('href');
         if (href) {
             const target = document.querySelector(href);
-            // Melhor alinhamento com offset para navbar/padding
-          const targetRect = target ? target.getBoundingClientRect() : null;
-const offset = 100; // Ajuste este valor conforme necessário
-window.scrollTo({
-    _top: window.pageYOffset + targetRect.top - offset,
-    get top() {
-        return this._top;
-    },
-    set top(value) {
-        this._top = value;
-    },
-    behavior: 'smooth'
-});
-            // Close mobile menu after clicking a link
-            if (navLinks) {
-                navLinks.classList.remove('active');
+            if (target) {
+                // Melhor alinhamento com offset para navbar/padding
+                const targetRect = target.getBoundingClientRect();
+                const offset = 100; // Ajuste este valor conforme necessário
+                window.scrollTo({
+                    top: window.pageYOffset + targetRect.top - offset,
+                    behavior: 'smooth'
+                });
+                // Close mobile menu after clicking a link
+                if (navLinks) {
+                    navLinks.classList.remove('active');
+                }
             }
         }
     });
