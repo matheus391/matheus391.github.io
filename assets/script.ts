@@ -17,9 +17,10 @@ if (menuToggle && navLinks) {
 
 // Smooth scroll for navigation links
 document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-    anchor.addEventListener('click', function (e) => {
+    (anchor as HTMLElement).addEventListener('click', (e) => {
         e.preventDefault();
-        const target = document.querySelector(this.getAttribute('href'));
+        const href = (anchor as HTMLElement).getAttribute('href');
+        const target = document.querySelector(href);
         if (target) {
             // Melhor alinhamento com offset para navbar/padding
             const targetRect = target.getBoundingClientRect();
